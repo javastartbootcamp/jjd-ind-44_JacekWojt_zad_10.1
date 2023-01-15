@@ -28,5 +28,15 @@ public class PersonBuilder {
         } while (i < size - 1);
         return persons;
     }
+
+    boolean checkArrayDuplicate(Person[] people) {
+        boolean result = false;
+        for (int i = 0; i < people.length - 1; i++) {
+            if (people[i].equals(people[people.length - 1])) {
+                result = true;
+            }
+        }
+        return result;
+    }
 }
 
