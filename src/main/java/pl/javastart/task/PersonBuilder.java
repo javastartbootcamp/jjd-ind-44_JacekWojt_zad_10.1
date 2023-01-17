@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class PersonBuilder {
     private Scanner scanner = new Scanner(System.in);
 
+    int i = 1;
+
     private Person createPerson() {
         System.out.print("Podaj imię: ");
         String firstname = scanner.nextLine();
@@ -16,27 +18,28 @@ public class PersonBuilder {
 
     Person[] createPersonArray(int size) {
         Person[] persons = new Person[size];
-        int i = 0;
-        persons[i] = createPerson();
-        do {
-            i++;
-            persons[i] = createPerson();
-            while (persons[i - 1].equals(persons[i])) {
-                System.out.println("Duplikat");
-                persons[i] = createPerson();
-            }
-        } while (i < size - 1);
+        Person firstPerson = createPerson();
+        for (int i = 0; i < persons.length; i++) {
+            persons[i] = firstPerson;
+        }
+        Person personToAdd = createPerson();
+        checkArrayDuplicate(persons, personToAdd);
+        personToAdd = createPerson();
+        checkArrayDuplicate(persons, personToAdd);
         return persons;
     }
 
-    boolean checkArrayDuplicate(Person[] people) {
-        boolean result = false;
-        for (int i = 0; i < people.length - 1; i++) {
-            if (people[i].equals(people[people.length - 1])) {
-                result = true;
+    void checkArrayDuplicate(Person[] people, Person personToAdd) {
+        for (Person person : people) {
+            while (person.equals(personToAdd)) {
+                System.out.println("Duplikat");
+                personToAdd = createPerson();
             }
         }
-        return result;
+        people[i] = personToAdd;
+        i++;
     }
 }
+
+
 
