@@ -19,7 +19,7 @@ public class PersonBuilder {
         Person[] persons = new Person[size];
         do {
             Person person = createPerson();
-            if (isUnique(person, persons, i)) {
+            if (isDuplicate(person, persons, i)) {
                 System.out.println("Duplikat");
                 persons[i] = createPerson();
             } else {
@@ -30,7 +30,7 @@ public class PersonBuilder {
         return persons;
     }
 
-    boolean isUnique(Person personToAdd, Person[] people, int checkNumber) {
+    boolean isDuplicate(Person personToAdd, Person[] people, int checkNumber) {
         for (int i = 0; i <= checkNumber; i++) {
             if (personToAdd.equals(people[i])) {
                 return true;
